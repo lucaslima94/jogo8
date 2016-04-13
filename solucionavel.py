@@ -7,7 +7,7 @@ def soluvel(vetor): #vetor de entrada
                     if(vetor[x] > vetor[y]):
                         saida = saida + 1
     print ("Numero total de inversoes: ", saida)
-    return saida #retorna numero de inversoes, fazer saida%2 == 0 pra saber se eh soluvel
+    return saida #retorna numero de inversoes, fazer saida%2 == 0 pra saber se eh solucionavel (impar = insoluconavel, par = solucionavel)
 
 estadoinicial = [1,5,8,0,2,3,4,6,7]
 teste2 = [5,1,8,0,2,3,4,6,7]
