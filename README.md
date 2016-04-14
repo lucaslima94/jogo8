@@ -1,4 +1,4 @@
-trabalho jogo do oito
-fundamento de inteligencia artificial 
-universidade federal de pelotas
+Trabalho 1 (jogo do oito)
+Fundamentos de inteligência artificial 
+Universidade federal de Pelotas
 Lucas Lima,Leonardo Yokemura, Vagner Sampaio
