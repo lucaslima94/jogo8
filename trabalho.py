@@ -16,6 +16,7 @@ class NO(object):
 	valor,filho1,filho2,filho3,filho4=None,None,None,None,None
 	flag1,flag2,flag3,flag4=0,0,0,0
 	pai=None
+	statusfilhos=0
 	def init(self,matriz):
 		self.valor=matriz
 	def gera_filhos(self, visita):
@@ -181,7 +182,7 @@ class NO(object):
 		
 		
 estadometa=[0,1,2,3,4,5,6,7,8]
-estadoinicial=[1,4,2,3,7,5,6,0,8]
+estadoinicial=[3,5,6,2,1,0,7,8,4]
 visitados=[]
 root=NO()
 root.pai=None
@@ -190,7 +191,9 @@ atual=root
 #print atual.pai
 for i in range(0,15000):
         visitados.append(atual.valor)
-        atual.gera_filhos(visitados)
+        if (atual.statusfilhos==0):
+			atual.gera_filhos(visitados)
+			atual.statusfilhos=1
         if(atual.filho1 != None and atual.flag1==0):
 				atual.flag1=1
 				atual=atual.filho1
