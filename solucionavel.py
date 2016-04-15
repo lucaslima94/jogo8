@@ -12,7 +12,7 @@ def soluvel(vetor): #vetor de entrada
 estadoinicial = [1,5,8,0,2,3,4,6,7]
 teste2 = [5,1,8,0,2,3,4,6,7]
 teste3 = [2,0,7,8,5,4,3,6,1]
-teste4 = [8,7,6,5,4,3,2,1,0]
+teste4 = [1,4,2,3,7,5,6,8,0]
 teste = 0
 teste = soluvel(estadoinicial)
 print(teste)

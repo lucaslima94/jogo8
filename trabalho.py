@@ -4,6 +4,12 @@ def teste(vet, vet2):
                 if(vet[i] == vet2):
                         valor = valor + 1
         return valor
+        
+def buscameta(inicial,meta):
+	valor=0
+	if (inicial==meta):
+		valor=1
+	return valor
 
 
 class NO(object):
@@ -174,40 +180,54 @@ class NO(object):
 		
 		
 		
-estadoinicial=[0,2,3,6,5,8,4,7,1]
+estadometa=[0,1,2,3,4,5,6,7,8]
+estadoinicial=[1,4,2,3,7,5,6,0,8]
 visitados=[]
 root=NO()
 root.pai=None
 root.init(estadoinicial)
 atual=root
 #print atual.pai
-for i in range(0,10):
+for i in range(0,15000):
         visitados.append(atual.valor)
         atual.gera_filhos(visitados)
-        print (atual.valor)
-        if (atual.pai!=None):
-			print atual.pai.valor
-	print "\n \n"
         if(atual.filho1 != None and atual.flag1==0):
 				atual.flag1=1
 				atual=atual.filho1
+				if(buscameta(atual.valor,estadometa)==1):
+					break
                 
         else:
                 if(atual.filho2 != None and atual.flag2==0):
 						atual.flag2=1
 						atual=atual.filho2
+						if(buscameta(atual.valor,estadometa)==1):
+							break
                 else:
                         if(atual.filho3 != None and atual.flag3==0):
 								atual.flag3=1
 								atual=atual.filho3
+								if(buscameta(atual.valor,estadometa)==1):
+									break
                         else:
                                 if(atual.filho4 != None and atual.flag4==0):
 										atual.flag4=1
 										atual=atual.filho4
+										if(buscameta(atual.valor,estadometa)==1):
+											break
                                 else:
 									atual=atual.pai
 
-print i										
+print atual.valor		
+print i
+
+caminhoarvore=[]
+while (atual.pai!=None):
+	caminhoarvore.append(atual.valor)
+	atual=atual.pai
+caminhoarvore.append(atual.valor)
+print caminhoarvore [::-1]
+print len(caminhoarvore)
 
         
         
