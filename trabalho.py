@@ -171,6 +171,8 @@ class NO(object):
                                                 self.filho3=NO()
                                                 self.filho3.pai=self
                                                 self.filho3.init(matriz1)
+                    
+					matriz1=self.valor[:]
 					matriz1[4],matriz1[7]=matriz1[7],matriz1[4]
 					if(teste(visita, matriz1) == 0):
                                                 self.filho4=NO()
@@ -182,48 +184,82 @@ class NO(object):
 		
 		
 estadometa=[0,1,2,3,4,5,6,7,8]
-estadoinicial=[3,5,6,2,1,0,7,8,4]
+estadoinicial=[3,1,0,7,2,4,6,8,5]
 visitados=[]
+i=0
 root=NO()
 root.pai=None
 root.init(estadoinicial)
 atual=root
+contador=0
 #print atual.pai
-for i in range(0,15000):
-        visitados.append(atual.valor)
-        if (atual.statusfilhos==0):
-			atual.gera_filhos(visitados)
-			atual.statusfilhos=1
-        if(atual.filho1 != None and atual.flag1==0):
-				atual.flag1=1
-				atual=atual.filho1
-				if(buscameta(atual.valor,estadometa)==1):
-					break
-                
-        else:
-                if(atual.filho2 != None and atual.flag2==0):
-						atual.flag2=1
-						atual=atual.filho2
-						if(buscameta(atual.valor,estadometa)==1):
-							break
-                else:
-                        if(atual.filho3 != None and atual.flag3==0):
-								atual.flag3=1
-								atual=atual.filho3
-								if(buscameta(atual.valor,estadometa)==1):
-									break
-                        else:
-                                if(atual.filho4 != None and atual.flag4==0):
-										atual.flag4=1
-										atual=atual.filho4
+while(buscameta(atual.valor,estadometa)!=1):
+	if (contador<52):
+		visitados.append(atual.valor)
+		if (atual.statusfilhos==0):
+				atual.gera_filhos(visitados)
+				print atual.valor
+				if atual.filho1 !=None:
+					print "filho1:",atual.filho1.valor
+				if atual.filho2 !=None:
+					print "filho2:",atual.filho2.valor
+				if atual.filho3 !=None:
+					print "filho3:",atual.filho3.valor
+				if atual.filho4 !=None:
+					print "filho4:",atual.filho4.valor
+				print "\n\n\n"
+				atual.statusfilhos=1
+		if(atual.filho1 != None and atual.flag1==0):
+					atual.flag1=1
+					atual=atual.filho1
+					contador = contador+1
+					print "entrou1"
+					if(buscameta(atual.valor,estadometa)==1):
+						break
+		        
+		else:
+		        if(atual.filho2 != None and atual.flag2==0):
+							atual.flag2=1
+							atual=atual.filho2
+							contador = contador+1
+							print "entrou2"
+							if(buscameta(atual.valor,estadometa)==1):
+								break
+		        else:
+		                if(atual.filho3 != None and atual.flag3==0):
+									atual.flag3=1
+									atual=atual.filho3
+									contador = contador+1
+									print "entrou3"
+									if(buscameta(atual.valor,estadometa)==1):
+										break
+		                else:
+		                        if(atual.filho4 != None and atual.flag4==0):
+											atual.flag4=1
+											atual=atual.filho4
+											contador = contador+1
+											print "entrou4"
+											if(buscameta(atual.valor,estadometa)==1):
+												break
+		                        else:	
 										if(buscameta(atual.valor,estadometa)==1):
+												break
+										if(atual.pai==None):
 											break
-                                else:
-									atual=atual.pai
-
-print atual.valor		
+										atual=atual.pai
+										contador=contador-1
+										print "entrou5"
+		
+	else:
+		contador=contador-1
+		atual=atual.pai
+	print atual.valor[0]," ",atual.valor[1]," ",atual.valor[2]
+	print atual.valor[3]," ",atual.valor[4]," ",atual.valor[5]
+	print atual.valor[6]," ",atual.valor[7]," ",atual.valor[8],"\n"
+	i=i+1
+		
 print i
-
+print contador
 caminhoarvore=[]
 while (atual.pai!=None):
 	caminhoarvore.append(atual.valor)
