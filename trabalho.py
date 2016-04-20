@@ -1,3 +1,5 @@
+import copy
+
 def soluvel(vetor): #vetor de entrada
     saida = 0
     for x in range(9):
@@ -193,14 +195,15 @@ class NO(object):
 		
 		
 estadometa=[0,1,2,3,4,5,6,7,8]
-estadoinicial=[1,4,2,3,7,0,6,8,5]
+estadoinicial=[2,0,7,8,5,4,3,6,1]
 visitados=[]
 i=0
 root=NO()
 root.pai=None
-root.init(estadoinicial)
+root.init(estadoinicial)	
 atual=root
 contador=0
+folhas =[]
 #print atual.pai
 vava=soluvel(estadoinicial)
 if(vava%2==0): #Se for soluvel
@@ -260,8 +263,12 @@ if(vava%2==0): #Se for soluvel
 													break 
 											if(atual.pai==None): #No raiz, breaka
 												print "Raiz"
-												break
-											if((atual.flag1==1 or atual.filho1==None)and(atual.flag2==1 or atual.filho2==None)and (atual.flag3==1 or atual.filho3==None)and(atual.flag4==1 or atual.filho4==None)):
+												atual = copy.copy(folhas[0])
+												
+												
+												folhas.remove(folhas[0])
+											
+											elif((atual.flag1==1 or atual.filho1==None)and(atual.flag2==1 or atual.filho2==None)and (atual.flag3==1 or atual.filho3==None)and(atual.flag4==1 or atual.filho4==None)):
 												atual=atual.pai
 												contador=contador-1
 												print "Voltou pro pai"
@@ -271,6 +278,9 @@ if(vava%2==0): #Se for soluvel
 			
 		else: #Entra aqui caso profundidade chegue no maximo
 			print "Prof maxima, volta pro pai"
+			nodotemp=NO()
+			nodotemp=copy.copy(atual)
+			folhas.append(nodotemp)
 			contador=contador-1 #Volta 1 posicao na arvore
 			atual=atual.pai #Volta pro pai
 		print atual.valor[0]," ",atual.valor[1]," ",atual.valor[2]
@@ -280,7 +290,7 @@ if(vava%2==0): #Se for soluvel
 else: #Caso nao seja soluvel
 	print "vavacilao"		
 print i
-print contador
+print "teste:", contador
 print vava
 caminhoarvore=[]
 while (atual.pai!=None):
