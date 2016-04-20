@@ -195,7 +195,7 @@ class NO(object):
 		
 		
 estadometa=[0,1,2,3,4,5,6,7,8]
-estadoinicial=[2,0,7,8,5,4,3,6,1]
+estadoinicial=[3,1,0,7,2,4,6,8,5]
 visitados=[]
 i=0
 root=NO()
