@@ -195,7 +195,7 @@ class NO(object):
 		
 		
 estadometa=[0,1,2,3,4,5,6,7,8]
-estadoinicial=[3,1,0,7,2,4,6,8,5]
+estadoinicial=[1,5,8,0,2,3,4,6,7]
 visitados=[]
 i=0
 root=NO()
@@ -203,6 +203,7 @@ root.pai=None
 root.init(estadoinicial)	
 atual=root
 contador=0
+contadortotal=0
 folhas =[]
 #print atual.pai
 vava=soluvel(estadoinicial)
@@ -230,6 +231,7 @@ if(vava%2==0): #Se for soluvel
 						atual.flag1=1
 						atual=atual.filho1
 						contador = contador+1
+						contadortotal=contadortotal+1
 						print "entrou1"
 						if(buscameta(atual.valor,estadometa)==1):
 							break
@@ -239,6 +241,7 @@ if(vava%2==0): #Se for soluvel
 								atual.flag2=1
 								atual=atual.filho2
 								contador = contador+1
+								contadortotal=contadortotal+1
 								print "entrou2"
 								if(buscameta(atual.valor,estadometa)==1):
 									break
@@ -247,6 +250,7 @@ if(vava%2==0): #Se for soluvel
 										atual.flag3=1
 										atual=atual.filho3
 										contador = contador+1
+										contadortotal=contadortotal+1
 										print "entrou3"
 										if(buscameta(atual.valor,estadometa)==1):
 											break
@@ -255,6 +259,7 @@ if(vava%2==0): #Se for soluvel
 												atual.flag4=1
 												atual=atual.filho4
 												contador = contador+1
+												contadortotal=contadortotal+1
 												print "entrou4"
 												if(buscameta(atual.valor,estadometa)==1):
 													break
@@ -264,6 +269,7 @@ if(vava%2==0): #Se for soluvel
 											if(atual.pai==None): #No raiz, breaka
 												print "Raiz"
 												atual = copy.copy(folhas[0])
+												contadortotal=contadortotal+5
 												
 												
 												folhas.remove(folhas[0])
@@ -271,6 +277,8 @@ if(vava%2==0): #Se for soluvel
 											elif((atual.flag1==1 or atual.filho1==None)and(atual.flag2==1 or atual.filho2==None)and (atual.flag3==1 or atual.filho3==None)and(atual.flag4==1 or atual.filho4==None)):
 												atual=atual.pai
 												contador=contador-1
+												contadortotal=contadortotal-1
+												
 												print "Voltou pro pai"
 											else:
 												print " entrou onde nao devia"
@@ -282,6 +290,7 @@ if(vava%2==0): #Se for soluvel
 			nodotemp=copy.copy(atual)
 			folhas.append(nodotemp)
 			contador=contador-1 #Volta 1 posicao na arvore
+			contadortotal=contadortotal-1
 			atual=atual.pai #Volta pro pai
 		print atual.valor[0]," ",atual.valor[1]," ",atual.valor[2]
 		print atual.valor[3]," ",atual.valor[4]," ",atual.valor[5]
@@ -290,7 +299,7 @@ if(vava%2==0): #Se for soluvel
 else: #Caso nao seja soluvel
 	print "vavacilao"		
 print i
-print "teste:", contador
+print "teste:", contadortotal
 print vava
 caminhoarvore=[]
 while (atual.pai!=None):
