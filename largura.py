@@ -212,8 +212,9 @@ if(vava%2==0):
 		volta = int((volta-0.1)/4)
 		profundidade = profundidade + 1
 	listafinal.append(listanodos[0])
-	print "FInal:", listafinal
-	print "Contador de nos visitados",contador
+	tamanhocam = profundidade + 1
+	print "FInal:", listafinal #Lista Final, precisa inverter, tamanhocam = tamanho do caminho, contador = numero de nos visitados
+	print "Contador de nos visitados",contador 
 	print "Profundidade encontrado: ",profundidade
 else:
 	print "Nao solucionavel"
