@@ -170,6 +170,8 @@ estadoinicial=[3,1,2,6,4,5,0,7,8]
 estadoinicial2=[1,5,8,0,2,3,4,6,7]
 estadoinicial3=[1,4,2,3,7,5,6,0,8]
 
+
+listafinal = []
 listanodos=[]
 listatemp = []
 contador=0
@@ -189,5 +191,15 @@ while(listanodos[contador] != estadofinal):
 		listanodos.append(listatemp[2])
 		listanodos.append(listatemp[3])
 	contador = contador + 1
+listafinal.append(listanodos[contador])
+print listafinal
 print listanodos[contador]
+print contador
+volta = int((contador-0.1)/4)
+while (volta != 0):
+	listafinal.append(listanodos[volta])
+	volta = int((volta-0.1)/4)
+listafinal.append(listanodos[0])
+print "FInal:", listafinal
+
 	
