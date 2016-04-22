@@ -10,6 +10,17 @@ def buscameta(inicial,meta):
 	if (inicial==meta):
 		valor=1
 	return valor
+	
+def soluvel(vetor): #vetor de entrada
+    saida = 0
+    for x in range(9):
+        if(vetor[x] != 0):
+            for y in range((x+1), 9):
+                if(vetor[y] != 0):
+                    if(vetor[x] > vetor[y]):
+                        saida = saida + 1
+    print ("Numero total de inversoes: ", saida)
+    return saida
 
 def gerafilhos(vetor,listanodos):
 	vetorfilhos = []
@@ -169,37 +180,42 @@ estadofinal=[0,1,2,3,4,5,6,7,8]
 estadoinicial=[3,1,2,6,4,5,0,7,8]
 estadoinicial2=[1,5,8,0,2,3,4,6,7]
 estadoinicial3=[1,4,2,3,7,5,6,0,8]
+estadoinicial4=[2,0,7,8,5,4,3,6,1]
+estadoinicial5=[0,2,1,3,4,5,6,7,8]
 
-
-listafinal = []
-listanodos=[]
-listatemp = []
-contador=0
-listanodos.append(estadoinicial3)
-while(listanodos[contador] != estadofinal):
-	print listanodos[contador]
-	atual = listanodos[contador]
-	if(listanodos[contador] == None):
-		listanodos.append(None)
-		listanodos.append(None)
-		listanodos.append(None)
-		listanodos.append(None)
-	else:
-		listatemp = gerafilhos(atual,listanodos)
-		listanodos.append(listatemp[0])
-		listanodos.append(listatemp[1])
-		listanodos.append(listatemp[2])
-		listanodos.append(listatemp[3])
-	contador = contador + 1
-listafinal.append(listanodos[contador])
-print listafinal
-print listanodos[contador]
-print contador
-volta = int((contador-0.1)/4)
-while (volta != 0):
-	listafinal.append(listanodos[volta])
-	volta = int((volta-0.1)/4)
-listafinal.append(listanodos[0])
-print "FInal:", listafinal
+vava = soluvel(estadoinicial)
+if(vava%2==0):
+	listafinal = []
+	listanodos=[]
+	listatemp = []
+	contador=0
+	listanodos.append(estadoinicial)
+	while(listanodos[contador] != estadofinal):
+		atual = listanodos[contador]
+		if(listanodos[contador] == None):
+			listanodos.append(None)
+			listanodos.append(None)
+			listanodos.append(None)
+			listanodos.append(None)
+		else:
+			listatemp = gerafilhos(atual,listanodos)
+			listanodos.append(listatemp[0])
+			listanodos.append(listatemp[1])
+			listanodos.append(listatemp[2])
+			listanodos.append(listatemp[3])
+		contador = contador + 1
+	listafinal.append(listanodos[contador])
+	volta = int((contador-0.1)/4)
+	profundidade = 1
+	while (volta != 0):
+		listafinal.append(listanodos[volta])
+		volta = int((volta-0.1)/4)
+		profundidade = profundidade + 1
+	listafinal.append(listanodos[0])
+	print "FInal:", listafinal
+	print contador
+	print profundidade
+else:
+	print "Nao solucionavel"
 
 	
