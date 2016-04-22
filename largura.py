@@ -213,8 +213,8 @@ if(vava%2==0):
 		profundidade = profundidade + 1
 	listafinal.append(listanodos[0])
 	print "FInal:", listafinal
-	print contador
-	print profundidade
+	print "Contador de nos visitados",contador
+	print "Profundidade encontrado: ",profundidade
 else:
 	print "Nao solucionavel"
 
